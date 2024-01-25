@@ -61,13 +61,13 @@ jobs:
           push: true
           tags: mjnhmnmm/backend:latest
       
-      - name: Build and push docker for frontend
-        uses: docker/build-push-action@v5
-        with:
-          context: ./frontend
-          file: ./frontend/Dockerfile
-          push: true
-          tags: mjnhmnmm/frontend:latest
+      # - name: Build and push docker for frontend
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: ./frontend
+      #     file: ./frontend/Dockerfile
+      #     push: true
+      #     tags: mjnhmnmm/frontend:latest
 
   deploy:
     needs: build
@@ -87,9 +87,9 @@ jobs:
             # Stop and remove any existing containers
             docker stop backend || true
             docker rm backend || true
-            docker stop frontend || true
-            docker rm frontend || true
+            # docker stop frontend || true
+            # docker rm frontend || true
 
             # Run the Docker containers
             docker run -d --name backend -p 3003:3003 mjnhmnmm/backend:latest
-            docker run -d --name frontend -p 3000:3000 mjnhmnmm/frontend:latest
+            # docker run -d --name frontend -p 3000:3000 mjnhmnmm/frontend:latest
