@@ -82,7 +82,7 @@ jobs:
           port: ${{ secrets.PORT }} 
           script: | 
             docker pull mjnhmnmm/backend:latest
-            docker pull mjnhmnmm/frontend:latest
+            # docker pull mjnhmnmm/frontend:latest
 
             # Stop and remove any existing containers
             docker stop backend || true
