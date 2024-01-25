@@ -59,7 +59,7 @@ jobs:
           context: ./backend
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
+          tags: mjnhmnmm/backend:latest
       
       - name: Build and push docker for frontend
         uses: docker/build-push-action@v5
@@ -67,7 +67,7 @@ jobs:
           context: ./frontend
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/frontend:latest
+          tags: mjnhmnmm/frontend:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -80,8 +80,8 @@ jobs:
           password: ${{ secrets.PASSWORD }} 
           port: ${{ secrets.PORT }} 
           script: | 
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/frontend:latest
+            docker pull mjnhmnmm/backend:latest
+            docker pull mjnhmnmm/frontend:latest
 
             # Stop and remove any existing containers
             docker stop backend || true
@@ -90,5 +90,5 @@ jobs:
             docker rm frontend || true
 
             # Run the Docker containers
-            docker run -d --name backend -p 3003:3003 ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
-            docker run -d --name frontend -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/frontend:latest
+            docker run -d --name backend -p 3003:3003 mjnhmnmm/backend:latest
+            docker run -d --name frontend -p 3000:3000 mjnhmnmm/frontend:latest
